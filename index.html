@@ -231,13 +231,73 @@ margin-left:105px; align:center;
 		<span class="entypo-lock" id="lockIcon"></span>
 	</a>
   </li>
-  <li id="roomservice" class="link has-sub" onclick="setDB( this.getElementsByClassName('item')[0].innerHTML )">
+  
+  <!-- onclick="alert('Request sent!'); setDB( this.getElementsByClassName('item')[0].innerHTML )" -->
+  
+  <li id="roomservice" class="link has-sub" onclick="roomService()">
 	<a>
-		<p><a href="#" class="item" id="roomServiceClick">Room Service</a></p>
+		<p><a href="#" class="item">Room Service</a></p>
 		<span class="entypo-plus-circled"></span>
 	</a>
-	
   </li>
+  
+    <li id="food" class="link has-sub" style="display:none" onclick="food()">
+	<a>
+		<p><a href="#" class="item">Food and Drinks</a></p>
+		<span class="entypo-database"></span>
+	</a>
+  </li>
+  
+      <li id="burger" class="link has-sub" style="display:none" onclick="alert('Request sent!'); setDB( this.getElementsByClassName('item')[0].innerHTML )">
+	<a>
+		<p><a href="#" class="item">Burger</a></p>
+		<span class="entypo-database"></span>
+	</a>
+  </li>
+  
+      <li id="tacos" class="link has-sub" style="display:none" onclick="alert('Request sent!'); setDB( this.getElementsByClassName('item')[0].innerHTML )">
+	<a>
+		<p><a href="#" class="item">Tacos</a></p>
+		<span class="entypo-database"></span>
+	</a>
+  </li>
+  
+      <li id="beer" class="link has-sub" style="display:none">
+	<a>
+		<p><a href="#" class="item">Beer</a></p>
+		<span class="entypo-database"></span>
+	</a>
+  </li>
+  
+    <li id="hospitality" class="link has-sub" style="display:none" onclick="hospitality()">
+	<a>
+		<p><a href="#" class="item">Hospitality</a></p>
+		<span class="entypo-bell"></span>
+	</a>
+  </li>
+  
+    <li id="towels" class="link has-sub" style="display:none" onclick="alert('Request sent!'); setDB( this.getElementsByClassName('item')[0].innerHTML )">
+	<a>
+		<p><a href="#" class="item">Towels</a></p>
+		<span class="entypo-bell"></span>
+	</a>
+  </li>
+  
+    <li id="shampoo" class="link has-sub" style="display:none" onclick="alert('Request sent!'); setDB( this.getElementsByClassName('item')[0].innerHTML )">
+	<a>
+		<p><a href="#" class="item">Shampoo</a></p>
+		<span class="entypo-bell"></span>
+	</a>
+  </li>
+  
+    <li id="blankets" class="link has-sub" style="display:none" onclick="alert('Request sent!'); setDB( this.getElementsByClassName('item')[0].innerHTML )">
+	<a>
+		<p><a href="#" class="item">Blankets</a></p>
+		<span class="entypo-bell"></span>
+	</a>
+  </li>
+  
+  
   <li id="wakeup" class="link" onclick="wakeUp()">
 	<a>
 		<p><a href="#">Wake Up Call</a></p>
@@ -355,6 +415,17 @@ document.getElementById("title").innerHTML="Room " + roomNum;
 	document.getElementById("faq2").style.display = "none";
 	document.getElementById("faq3").style.display = "none";
 	
+	document.getElementById("food").style.display = "none";
+	document.getElementById("hospitality").style.display = "none";
+	
+	document.getElementById("burger").style.display = "none";
+	document.getElementById("tacos").style.display = "none";
+	document.getElementById("beer").style.display = "none";
+	
+	document.getElementById("towels").style.display = "none";
+	document.getElementById("shampoo").style.display = "none";
+	document.getElementById("blankets").style.display = "none";
+	
 	document.getElementById("goBack1").style.display = "none";
 	document.getElementById("goBack2").style.display = "none";
 	
@@ -363,6 +434,41 @@ document.getElementById("title").innerHTML="Room " + roomNum;
 
 }
 
+function food(){
+	document.getElementById("food").style.display = "none";
+	document.getElementById("hospitality").style.display = "none";
+	
+	document.getElementById("burger").style.display = "block";
+	document.getElementById("tacos").style.display = "block";
+	document.getElementById("beer").style.display = "block";
+}
+
+
+function hospitality(){
+	document.getElementById("food").style.display = "none";
+	document.getElementById("hospitality").style.display = "none";
+	
+	document.getElementById("towels").style.display = "block";
+	document.getElementById("shampoo").style.display = "block";
+	document.getElementById("blankets").style.display = "block";
+}
+
+function roomService(){
+
+
+document.getElementById("title").innerHTML="Room service";
+
+	document.getElementById("locker").style.display = "none";
+	document.getElementById("roomservice").style.display = "none";
+	document.getElementById("wakeup").style.display = "none";
+	document.getElementById("faq").style.display = "none";
+	
+	document.getElementById("food").style.display = "block";
+	document.getElementById("hospitality").style.display = "block";
+	
+	document.getElementById("goBack2").style.display = "block";
+
+}
 
 
 
