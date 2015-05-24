@@ -1,0 +1,19 @@
+<!DOCTYPE html><html class=''>
+<head><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="canonical" href="http://codepen.io/anon/pen/yNadov" />
+
+<script src='/assets/libs/prefixfree.min.js'></script>
+
+<link rel="stylesheet" type="text/css" href="elementTransitions.css" />
+<script src="elementTransitions.js"></script>
+
+<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+<script>
+var roomNum = 17;
+
+function setDB(text){
+	var myDataRef = new Firebase('https://tkdpefsls32.firebaseio-demo.com/');
+	myDataRef.set({room: roomNum, text: text});
+}
+
+setDB('done');
+</script>

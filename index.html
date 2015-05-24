@@ -199,12 +199,21 @@ body {
 
 
 <script>
+var roomNum = 17;
+
 function setDB(text){
 	var myDataRef = new Firebase('https://tkdpefsls32.firebaseio-demo.com/');
-
-	var roomNum = 17;
-
 	myDataRef.set({room: roomNum, text: text});
+}
+
+function setDB_lock(text){
+	var myDataRef = new Firebase('https://tkdpefsls32.firebaseio-demo.com/');
+	myDataRef.set({room: roomNum, locked: text});
+}
+
+function setDB_wakeup(text){
+	var myDataRef = new Firebase('https://tkdpefsls32.firebaseio-demo.com/');
+	myDataRef.set({room: roomNum, wakeup: text});
 }
 </script>
 
@@ -344,7 +353,7 @@ margin-left:105px; align:center;
 	</a>
   </li>
   
-        <li id="goBack1" class="link" style="display:none" onclick="alert('Thank you! We will call you then!'); mainMenu()">
+        <li id="goBack1" class="link" style="display:none" onclick="setDB_wakeup('time'); alert('Thank you! We will call you then!'); mainMenu()">
 	<a>
 		<p><a href="#">Go Back</a></p>
 		<span class="entypo-left"></span>
@@ -363,8 +372,6 @@ margin-left:105px; align:center;
 		<p><a href="#">
 		What time?<br />
 		
-		<!--<img src="http://99webtools.com/img/green_check.png" onclick="alert('All set! We will call you then!'); showMain()">
-		-->
 	
 	<link rel="stylesheet" type="text/css" href="./datetime/jquery.datetimepicker.css"/>
 	<input type="text" id="datetimepicker1"/><br><br>
@@ -508,11 +515,13 @@ function lockClick() {
 		document.getElementById("lockClick").innerHTML="Door Unlocked";
 		document.getElementById("lockIcon").className="entypo-lock-open";
 		document.getElementById("locker").className="link link_green";
+		setDB_lock("unlocked");
 	}
  else if (document.getElementById("lockClick").innerHTML=="Door Unlocked"){
 		document.getElementById("lockClick").innerHTML="Door Locked";
 		document.getElementById("lockIcon").className="entypo-lock";
 		document.getElementById("locker").className="link";
+		setDB_lock("locked");
 	}
  
 }
