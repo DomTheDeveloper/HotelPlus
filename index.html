@@ -29,12 +29,12 @@ body {
   background: #95a5a6;
 }
 
-#list {
+.list {
   width: 400px;
   margin: 000px !important;
 }
 
-.link {
+.link, .link2 {
   background: #34495e;
   width: 370px;
   height: 60px;
@@ -44,7 +44,7 @@ body {
   transition: box-shadow 0.4s ease, padding 0.25974s ease;
 }
 
-.link span {
+.link span, .link2 span {
   display: block;
   width: 80px;
   height: 60px;
@@ -62,7 +62,7 @@ body {
   transition: z-index 0s ease 0.25974s;
 }
 
-.link p:before {
+.link p:before, .link2 p:before {
   content: '';
   position: absolute;
   z-index: 1;
@@ -75,7 +75,7 @@ body {
   opacity: 0;
 }
 
-.link p {
+.link p, .link2 p {
   font-size: 1.4em;
   width: 300px;
   display: block;
@@ -89,24 +89,47 @@ body {
   transition: 0.4s ease;
 }
 
-.link:hover {
+
+.link:hover, .link2:hover {
+  background: #990000;
+  box-shadow: 1em 0px #cc0000, inset 0 1px 0 rgba(0, 0, 0, 0.05);
+  padding-right: 1em;
+}
+.link:hover span, .link2:hover span {
+  color: #990000;
+  box-shadow: 0.5em 0px #cc0000;
+  z-index: 0;
+}
+
+.link:hover p:before, .link2:hover p.before {
+  background: #cc0000;
+  margin: 1em -2.7em;
+  opacity: 1;
+}
+
+
+.link_green:hover {
   background: #16a085;
   box-shadow: 1em 0px #1abc9c, inset 0 1px 0 rgba(0, 0, 0, 0.05);
   padding-right: 1em;
 }
-.link:hover span {
+.link_green:hover span {
   color: #16a085;
   box-shadow: 0.5em 0px #1abc9c;
   z-index: 0;
 }
-.link:hover p {
-  padding-left: 6em;
-  color: #ecf0f1;
-}
-.link:hover p:before {
+
+.link_green:hover p:before {
   background: #1abc9c;
   margin: 1em -2.7em;
   opacity: 1;
+}
+
+
+/* */
+.link:hover p {
+  padding-left: 6em;
+  color: #ecf0f1; /* NO */
 }
 
 .link:nth-child(2):hover {
@@ -157,6 +180,20 @@ body {
   background: #e74c3c;
 }
 </style>
+
+
+  
+  <style>
+		input{
+			width:100px !important;
+			color:black;
+		}
+		</style>
+		
+		<script>
+		getElementById("datetimepicker1").value = "Hello";
+</script>
+		
 </head>
 <body>
 
@@ -179,7 +216,7 @@ width:370px;
 "
 >
 <br style="margin-top:-10px;" />
-<a style="
+<a id="title" style="
 color:#eee; font-family:helvetica; font-size:43px;
 margin-left:105px; align:center;
 ">Room 17</a><br /><br />
@@ -187,50 +224,109 @@ margin-left:105px; align:center;
 
 
 <div id="cssmenu" style="margin-left:-40px">
-<ul id="list">
-  <li class="link" onclick="lockClick(this)">
+<ul id="mainmenu" class="list">
+  <li id="locker" class="link" onclick="lockClick(this)">
 	<a>
 		<p><a href="#" id="lockClick">Door Locked</a></p>
 		<span class="entypo-lock" id="lockIcon"></span>
 	</a>
   </li>
-  <li class="link has-sub" onclick="setDB( this.getElementsByClassName('item')[0].innerHTML )">
+  <li id="roomservice" class="link has-sub" onclick="setDB( this.getElementsByClassName('item')[0].innerHTML )">
 	<a>
 		<p><a href="#" class="item" id="roomServiceClick">Room Service</a></p>
 		<span class="entypo-plus-circled"></span>
 	</a>
 	
   </li>
-  <li class="link">
+  <li id="wakeup" class="link" onclick="wakeUp()">
 	<a>
 		<p><a href="#">Wake Up Call</a></p>
 		<span class="entypo-phone"></span>
 	</a>
   </li>
-  <li class="link">
+  <li id="faq" class="link">
 	<a>
 		<p><a href="#">FAQ</a></p>
 		<span class="entypo-info"></span>
 	</a>
   </li>
+  
+  <li class="link2" id="wakeup-dialog" style="display:none">
+	<a>
+		<p><a href="#">
+		What time?
+		
+		<img src="http://99webtools.com/img/green_check.png" onclick="alert('All set! We will call you then!'); showMain()">
+	<link rel="stylesheet" type="text/css" href="./datetime/jquery.datetimepicker.css"/>
+	<input type="text" id="datetimepicker1"/><br><br>
+<script src="./datetime/jquery.js"></script>
+<script src="./datetime/jquery.datetimepicker.js"></script>
+
+<script>
+$('#datetimepicker1').datetimepicker({
+	datepicker:false,
+	formatTime:'h:i' + " A",
+	step:30,
+	format: 'h:i' + " A"
+});
+</script>
+
+		</a></p>
+	</a>
+  </li>
+  
+
 </ul> 
 
 
+
+
 </div>
+
+
+
 
 
 <img src="butler.png" style="margin-left:50px; margin-top:10px; width:240px; height:140px;" />
 
 <script>
 
+function showMain(){
+var roomNum = 17;
+
+document.getElementById("title").innerHTML="Room " + roomNum;
+
+	document.getElementById("locker").style.display = "block";
+	document.getElementById("roomservice").style.display = "block";
+	document.getElementById("wakeup").style.display = "block";
+	document.getElementById("faq").style.display = "block";
+	
+	document.getElementById("wakeup-dialog").style.display = "none";
+
+}
+
+function wakeUp(){
+	document.getElementById("title").innerHTML="Wake up";
+	
+	document.getElementById("locker").style.display = "none";
+	document.getElementById("roomservice").style.display = "none";
+	document.getElementById("wakeup").style.display = "none";
+	document.getElementById("faq").style.display = "none";
+	
+	document.getElementById("wakeup-dialog").style.display = "block";
+	
+}
+
 function lockClick() {
  if (document.getElementById("lockClick").innerHTML=="Door Locked"){
 		document.getElementById("lockClick").innerHTML="Door Unlocked";
 		document.getElementById("lockIcon").className="entypo-lock-open";
+		document.getElementById("locker").className="link link_green";
 	}
  else if (document.getElementById("lockClick").innerHTML=="Door Unlocked"){
 		document.getElementById("lockClick").innerHTML="Door Locked";
 		document.getElementById("lockIcon").className="entypo-lock";
+		document.getElementById("locker").className="link";
 	}
  
 }
