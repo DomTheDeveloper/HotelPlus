@@ -244,10 +244,57 @@ margin-left:105px; align:center;
 		<span class="entypo-phone"></span>
 	</a>
   </li>
-  <li id="faq" class="link">
+  
+  <li id="faq" class="link" onclick="faq()">
 	<a>
 		<p><a href="#">FAQ</a></p>
 		<span class="entypo-info"></span>
+	</a>
+  </li>
+  
+    <li id="faq1" class="link" style="display:none"
+	onclick=" alert(' Breakfast: 8 AM - 10 AM \r\n Lunch 12 Noon - 1:30 PM \r\n Dinner: 6 PM - 8 PM '); "
+	
+	>
+	<a>
+		<p><a href="#">Dining Hours</a></p>
+		<span class="entypo-map"></span>
+	</a>
+  </li>
+  
+      <li id="faq2" class="link" style="display:none"
+	  
+	  onclick=" alert(' Shuttles: Operate 8AM - 10PM, arrive by the front desk. \r\n Shuttles arrive every half hour. '); "
+	  
+	  >
+	<a>
+		<p><a href="#">Shuttle Times</a></p>
+		<span class="entypo-direction"></span>
+	</a>
+  </li>
+  
+      <li id="faq3" class="link" style="display:none"
+	  
+	  onclick=" alert(' Check in: After 12 PM. \r\n Check out: Before 10 AM. '); "
+	  
+	  >
+	<a>
+		<p><a href="#">Check In/Out Times</a></p>
+		<span class="entypo-suitcase"></span>
+	</a>
+  </li>
+  
+        <li id="goBack1" class="link" style="display:none" onclick="alert('Thank you! We will call you then!'); mainMenu()">
+	<a>
+		<p><a href="#">Go Back</a></p>
+		<span class="entypo-left"></span>
+	</a>
+  </li>
+  
+    <li id="goBack2" class="link" style="display:none" onclick="mainMenu()">
+	<a>
+		<p><a href="#">Go Back</a></p>
+		<span class="entypo-left"></span>
 	</a>
   </li>
   
@@ -256,7 +303,9 @@ margin-left:105px; align:center;
 		<p><a href="#">
 		What time?
 		
-		<img src="http://99webtools.com/img/green_check.png" onclick="alert('All set! We will call you then!'); showMain()">
+		<!--<img src="http://99webtools.com/img/green_check.png" onclick="alert('All set! We will call you then!'); showMain()">
+		-->
+	
 	<link rel="stylesheet" type="text/css" href="./datetime/jquery.datetimepicker.css"/>
 	<input type="text" id="datetimepicker1"/><br><br>
 <script src="./datetime/jquery.js"></script>
@@ -267,7 +316,8 @@ $('#datetimepicker1').datetimepicker({
 	datepicker:false,
 	formatTime:'h:i' + " A",
 	step:30,
-	format: 'h:i' + " A"
+	format: 'h:i' + " A",
+	inline:true
 });
 </script>
 
@@ -291,7 +341,7 @@ $('#datetimepicker1').datetimepicker({
 
 <script>
 
-function showMain(){
+function mainMenu(){
 var roomNum = 17;
 
 document.getElementById("title").innerHTML="Room " + roomNum;
@@ -301,8 +351,35 @@ document.getElementById("title").innerHTML="Room " + roomNum;
 	document.getElementById("wakeup").style.display = "block";
 	document.getElementById("faq").style.display = "block";
 	
+	document.getElementById("faq1").style.display = "none";
+	document.getElementById("faq2").style.display = "none";
+	document.getElementById("faq3").style.display = "none";
+	
+	document.getElementById("goBack1").style.display = "none";
+	document.getElementById("goBack2").style.display = "none";
+	
+	
 	document.getElementById("wakeup-dialog").style.display = "none";
 
+}
+
+
+
+
+
+function faq(){
+	document.getElementById("title").innerHTML="FAQ";
+	
+	document.getElementById("locker").style.display = "none";
+	document.getElementById("roomservice").style.display = "none";
+	document.getElementById("wakeup").style.display = "none";
+	document.getElementById("faq").style.display = "none";
+	
+	document.getElementById("faq1").style.display = "block";
+	document.getElementById("faq2").style.display = "block";
+	document.getElementById("faq3").style.display = "block";
+	
+	document.getElementById("goBack2").style.display = "block";
 }
 
 function wakeUp(){
@@ -315,7 +392,10 @@ function wakeUp(){
 	
 	document.getElementById("wakeup-dialog").style.display = "block";
 	
+	document.getElementById("goBack1").style.display = "block";
 }
+
+
 
 function lockClick() {
  if (document.getElementById("lockClick").innerHTML=="Door Locked"){
